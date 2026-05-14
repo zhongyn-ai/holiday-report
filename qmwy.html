@@ -25,6 +25,8 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 .legend{display:flex;justify-content:center;gap:14px;margin-bottom:12px;font-size:11px}
 .lg{display:flex;align-items:center;gap:3px}
 .dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+.insight{background:#f9f7f5;border-left:3px solid #b8a49a;padding:10px 14px;margin:8px 0 12px;font-size:12px;line-height:1.7;color:#3a3230;border-radius:0 4px 4px 0}
+.insight p{margin:0 0 6px}.insight p:last-child{margin:0}
 </style>
 </head>
 <body>
@@ -35,6 +37,9 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 <!-- Section 1: 整体 6 charts -->
 <h2>一、整体爆发系数（品类×城市线级）</h2>
 <p class="note">X轴=整体/高线/中低旅游/中低非旅，清明+五一对比</p>
+<div class="insight">
+  <p><strong>整体爆发表现：五一受南部多地暴雨、清明春假连休分流双重压制</strong>，<strong>正餐爆发在高基数下同比下滑，并以中低线旅游城市尤甚</strong>。根据美团收银数据，26年五一高线 / 中低线非旅游 / 中低线旅游城市的正餐日均流水爆发系数分别 1.13 / 1.37 / 1.42（YoY 持平 / -0.01 / -0.04）；下滑由单量爆发收缩导致（YoY -0.02 / -0.02 / -0.04）、单均价则稳中有增（YoY +0.02 / +0.02 / 持平），反映在虹吸效应下商家"趁节日多赚"心态强化。<strong>清明虽有春假连休助益，但正餐日均流水爆发系数仅微幅回升</strong>（YoY +0.02 / +0.01 / 持平），且结构上由单均价而非单量拉动，爆发增长已趋疲软。轻餐则因25年五一外卖战遗留"量高价低"的异常基数，26年五一量价结构同比常态化回调，而单店流水口径同比基本持平。</p>
+</div>
 <div class="row3">
 <div class="card"><div class="ct">正餐 · 系数</div><div class="ch" id="a1"></div></div>
 <div class="card"><div class="ct">轻餐 · 系数</div><div class="ch" id="a2"></div></div>
@@ -49,6 +54,9 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 <!-- Section 2: 品类×价格带 YoY matrix (4 rows × 4 cols) -->
 <h2>二、正餐 品类×价格带（爆发系数YoY）</h2>
 <p class="note">纵向=品类分组（含自助系），横向=价格带。暖色=同比正增长，冷色=负增长</p>
+<div class="insight">
+  <p><strong>正餐品类结构：地方菜/特色菜主导爆发，节假日品质消费亦向其收拢。</strong>本地地方菜/特色菜作为出游场景下"吃本地特色"的首要受益品类，五一依然保持最强爆发；清明则因春假拼假助益长途出行增长，本地特色品类同比增强趋势显著。<strong>消费K型分化下，"品类×价格带"的心智定位在加速清晰：① 地方菜/特色菜向高价格带集中</strong>，承接节假日出游场景下的品质消费需求，低价格带爆发相应减弱；<strong>② 火锅/自助收敛至"日常+平价"定位</strong>，节假日高价格带爆发同比大幅减弱；<strong>③ 烧烤在高价格带跑出细分机会</strong>，依托地域特色打造差异化/品质感，承接部分节假日"吃本地特色"消费需求。</p>
+</div>
 
 <div class="grp-label">地方菜系</div>
 <div class="row4">
@@ -85,6 +93,9 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 <!-- Section 3: 品类×地域 YoY only -->
 <h2>三、品类×地域（五一爆发系数YoY）</h2>
 <p class="note">每组品类单独出图，只展示YoY，颜色深浅区分品类，8大区对比</p>
+<div class="insight">
+  <p><strong>区域结构：南弱北强，长途游目的地受益明显、本地特色品类爆发同步走强。</strong>五一南部暴雨迫使客流北移，中南/西南在高基数下同比下滑；其余区域爆发同比改善，但客流构成决定了品类走势分化。26年五一长途游结构性提升（多地春假连休 + 出境减弱下客流回流国内），<strong>东北/西北</strong>作为长途游核心目的地直接受益，<strong>华北</strong>受小众目的地/文化游崛起吸引更多外地客流，<strong>三者均以外地客流为主，本地地方菜/特色菜爆发增强更为突出，"吃本地特色"倾向清晰可见</strong>；<strong>华东</strong>则因苏超"票根经济"+小众目的地带动爆发增强，但在长短途并行下，本地与异地地方菜同比趋势相近。</p>
+</div>
 
 <div class="grp-label">正餐整体</div>
 <div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r1"></div></div>

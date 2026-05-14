@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2026清明+五一 爆发系数复盘 v6</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f2f1ee;color:#4a4540;padding:20px 28px;max-width:1440px;margin:0 auto}
+h1{font-size:17px;color:#5a4a3a;text-align:center;margin-bottom:4px}
+.subtitle{text-align:center;font-size:11px;color:#8a7a6a;margin-bottom:16px;line-height:1.5}
+h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:3px solid #b8a49a}
+.note{font-size:10px;color:#8a7a6a;margin:-4px 0 8px 14px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.card{background:#faf9f7;border-radius:6px;padding:8px;border:1px solid rgba(184,164,154,.18)}
+.ct{font-size:10px;color:#8a7a6a;margin-bottom:1px}
+.ch{width:100%;height:195px}
+.ch-s{width:100%;height:155px}
+.ch-m{width:100%;height:215px}
+.grp-label{font-size:11px;color:#5a4a3a;font-weight:600;margin:8px 0 4px 4px;padding-left:8px;border-left:2px solid #b8a49a}
+.footer{text-align:center;font-size:10px;color:#999;margin-top:20px;padding-top:10px;border-top:1px solid #e0dcd8}
+.legend{display:flex;justify-content:center;gap:14px;margin-bottom:12px;font-size:11px}
+.lg{display:flex;align-items:center;gap:3px}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+</style>
+</head>
+<body>
+<h1>2026 清明+五一 爆发系数复盘</h1>
+<p class="subtitle">五一稳压清明，价差>量差。受春假分流，五一同比平平，中低线旅游正餐同比下挫最显著</p>
+<div class="legend"><div class="lg"><span class="dot" style="background:#b8a49a"></span>清明</div><div class="lg"><span class="dot" style="background:#8098a8"></span>五一</div></div>
+
+<!-- Section 1: 整体 6 charts -->
+<h2>一、整体爆发系数（品类×城市线级）</h2>
+<p class="note">X轴=整体/高线/中低旅游/中低非旅，清明+五一对比</p>
+<div class="row3">
+<div class="card"><div class="ct">正餐 · 系数</div><div class="ch" id="a1"></div></div>
+<div class="card"><div class="ct">轻餐 · 系数</div><div class="ch" id="a2"></div></div>
+<div class="card"><div class="ct">快餐 · 系数</div><div class="ch" id="a3"></div></div>
+</div>
+<div class="row3">
+<div class="card"><div class="ct">正餐 · YoY</div><div class="ch" id="a4"></div></div>
+<div class="card"><div class="ct">轻餐 · YoY</div><div class="ch" id="a5"></div></div>
+<div class="card"><div class="ct">快餐 · YoY</div><div class="ch" id="a6"></div></div>
+</div>
+
+<!-- Section 2: 品类×价格带 YoY matrix (4 rows × 4 cols) -->
+<h2>二、正餐 品类×价格带（爆发系数YoY）</h2>
+<p class="note">纵向=品类分组（含自助系），横向=价格带。暖色=同比正增长，冷色=负增长</p>
+
+<div class="grp-label">地方菜系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m1a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m1b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m1c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m1d"></div></div>
+</div>
+
+<div class="grp-label">火锅系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m2a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m2b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m2c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m2d"></div></div>
+</div>
+
+<div class="grp-label">烧烤&休闲</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m3a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m3b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m3c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m3d"></div></div>
+</div>
+
+<div class="grp-label">自助系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m4a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m4b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m4c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m4d"></div></div>
+</div>
+
+<!-- Section 3: 品类×地域 YoY only -->
+<h2>三、品类×地域（五一爆发系数YoY）</h2>
+<p class="note">每组品类单独出图，只展示YoY，颜色深浅区分品类，8大区对比</p>
+
+<div class="grp-label">正餐整体</div>
+<div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r1"></div></div>
+
+<div class="grp-label">地方菜（本地/特色/异地）</div>
+<div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r2"></div></div>
+
+<div class="grp-label">火锅系（火锅/辣锅/特色火锅/小火锅）</div>
+<div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r3"></div></div>
+
+<div class="grp-label">烧烤&休闲（烧烤/烤串/单品休闲餐）</div>
+<div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r4"></div></div>
+
+<div class="grp-label">自助系（自助火锅/自助烧烤/自助餐）</div>
+<div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r5"></div></div>
+
+<div class="footer">
+基期：4/17–4/19（周五~周日）| 清明：4/5–4/7 | 五一：5/1–5/5 | 爆发系数=假期日均/基期日均 | YoY=2026系数-2025系数
+</div>
+
+<script>
+const OV=[{"label":"正餐","qm_26":1.1278,"wy_26":1.23,"qm_cnt_26":1.0781,"wy_cnt_26":1.1028,"qm_price_26":1.0461,"wy_price_26":1.1153,"qm_amt_yoy":0.0131,"wy_amt_yoy":-0.0065,"qm_cnt_yoy":-0.0044,"wy_cnt_yoy":-0.0224,"qm_price_yoy":0.0164,"wy_price_yoy":0.0165},{"label":"高线城市","qm_26":1.0719,"wy_26":1.1283,"qm_cnt_26":1.0303,"wy_cnt_26":1.0278,"qm_price_26":1.0404,"wy_price_26":1.0977,"qm_amt_yoy":0.016,"wy_amt_yoy":0.0019,"qm_cnt_yoy":-0.0082,"wy_cnt_yoy":-0.0157,"qm_price_yoy":0.0236,"wy_price_yoy":0.0183},{"label":"中低线旅游城市","qm_26":1.234,"wy_26":1.4185,"qm_cnt_26":1.1563,"wy_cnt_26":1.2358,"qm_price_26":1.0672,"wy_price_26":1.1478,"qm_amt_yoy":0.0006,"wy_amt_yoy":-0.041,"qm_cnt_yoy":-0.005,"wy_cnt_yoy":-0.0394,"qm_price_yoy":0.0051,"wy_price_yoy":0.0033},{"label":"中低线非旅游城市","qm_26":1.2038,"wy_26":1.3707,"qm_cnt_26":1.1342,"wy_cnt_26":1.1847,"qm_price_26":1.0613,"wy_price_26":1.157,"qm_amt_yoy":0.0138,"wy_amt_yoy":-0.006,"qm_cnt_yoy":0.0072,"wy_cnt_yoy":-0.0211,"qm_price_yoy":0.0055,"wy_price_yoy":0.0153},{"label":"轻餐","qm_26":1.1244,"wy_26":1.2033,"qm_cnt_26":1.0806,"wy_cnt_26":1.0659,"qm_price_26":1.0405,"wy_price_26":1.1289,"qm_amt_yoy":0.0232,"wy_amt_yoy":-0.0006,"qm_cnt_yoy":0.0187,"wy_cnt_yoy":-0.0855,"qm_price_yoy":0.0036,"wy_price_yoy":0.0833},{"label":"高线城市","qm_26":1.0837,"wy_26":1.1257,"qm_cnt_26":1.0478,"wy_cnt_26":1.0146,"qm_price_26":1.0342,"wy_price_26":1.1096,"qm_amt_yoy":0.0192,"wy_amt_yoy":0.0051,"qm_cnt_yoy":0.0126,"wy_cnt_yoy":-0.0879,"qm_price_yoy":0.006,"wy_price_yoy":0.0931},{"label":"中低线旅游城市","qm_26":1.1989,"wy_26":1.3834,"qm_cnt_26":1.1251,"wy_cnt_26":1.1395,"qm_price_26":1.0656,"wy_price_26":1.214,"qm_amt_yoy":0.0325,"wy_amt_yoy":-0.0027,"qm_cnt_yoy":0.0385,"wy_cnt_yoy":-0.1022,"qm_price_yoy":-0.0078,"wy_price_yoy":0.0978},{"label":"中低线非旅游城市","qm_26":1.1675,"wy_26":1.2617,"qm_cnt_26":1.1096,"wy_cnt_26":1.1093,"qm_price_26":1.0521,"wy_price_26":1.1374,"qm_amt_yoy":0.0239,"wy_amt_yoy":-0.0164,"qm_cnt_yoy":0.0159,"wy_cnt_yoy":-0.0733,"qm_price_yoy":0.0066,"wy_price_yoy":0.0566},{"label":"快餐","qm_26":1.0496,"wy_26":1.0816,"qm_cnt_26":0.9888,"wy_cnt_26":0.9774,"qm_price_26":1.0615,"wy_price_26":1.1066,"qm_amt_yoy":-0.0082,"wy_amt_yoy":-0.0026,"qm_cnt_yoy":-0.0085,"wy_cnt_yoy":-0.0191,"qm_price_yoy":0.0008,"wy_price_yoy":0.0186},{"label":"高线城市","qm_26":1.011,"wy_26":1.0193,"qm_cnt_26":0.9524,"wy_cnt_26":0.9305,"qm_price_26":1.0615,"wy_price_26":1.0955,"qm_amt_yoy":-0.0103,"wy_amt_yoy":0.0094,"qm_cnt_yoy":-0.0146,"wy_cnt_yoy":-0.0185,"qm_price_yoy":0.0054,"wy_price_yoy":0.0313},{"label":"中低线旅游城市","qm_26":1.1337,"wy_26":1.2023,"qm_cnt_26":1.0531,"wy_cnt_26":1.0579,"qm_price_26":1.0765,"wy_price_26":1.1365,"qm_amt_yoy":-0.0064,"wy_amt_yoy":-0.0283,"qm_cnt_yoy":-0.0106,"wy_cnt_yoy":-0.0351,"qm_price_yoy":0.0047,"wy_price_yoy":0.0106},{"label":"中低线非旅游城市","qm_26":1.0932,"wy_26":1.1601,"qm_cnt_26":1.0294,"wy_cnt_26":1.0311,"qm_price_26":1.0619,"wy_price_26":1.1251,"qm_amt_yoy":-0.0049,"wy_amt_yoy":-0.0179,"qm_cnt_yoy":0.0044,"wy_cnt_yoy":-0.0133,"qm_price_yoy":-0.0093,"wy_price_yoy":-0.0028}];
+const PD=[{"band":"A.40元以下","cat":"__TOTAL__","qm25":1.093,"wy25":1.2115,"qm26":1.1,"wy26":1.1674,"qm_yoy":0.007,"wy_yoy":-0.0441},{"band":"A.40元以下","cat":"本地地方菜","qm25":1.0913,"wy25":1.2421,"qm26":1.1088,"wy26":1.2282,"qm_yoy":0.0175,"wy_yoy":-0.0139},{"band":"A.40元以下","cat":"单品休闲餐","qm25":1.0506,"wy25":1.2077,"qm26":1.0948,"wy26":1.1684,"qm_yoy":0.0442,"wy_yoy":-0.0392},{"band":"A.40元以下","cat":"火锅","qm25":1.1667,"wy25":1.3333,"qm26":1.1874,"wy26":1.2227,"qm_yoy":0.0207,"wy_yoy":-0.1106},{"band":"A.40元以下","cat":"烤串","qm25":1.0532,"wy25":1.2627,"qm26":1.0749,"wy26":1.2061,"qm_yoy":0.0217,"wy_yoy":-0.0566},{"band":"A.40元以下","cat":"辣锅","qm25":1.228,"wy25":1.3056,"qm26":1.2376,"wy26":1.3393,"qm_yoy":0.0096,"wy_yoy":0.0337},{"band":"A.40元以下","cat":"其他正餐","qm25":1.0449,"wy25":1.1504,"qm26":1.1083,"wy26":1.1413,"qm_yoy":0.0634,"wy_yoy":-0.0091},{"band":"A.40元以下","cat":"烧烤","qm25":1.1266,"wy25":1.2934,"qm26":1.1338,"wy26":1.2378,"qm_yoy":0.0072,"wy_yoy":-0.0556},{"band":"A.40元以下","cat":"特色菜","qm25":1.0929,"wy25":1.2595,"qm26":1.022,"wy26":1.1269,"qm_yoy":-0.0709,"wy_yoy":-0.1326},{"band":"A.40元以下","cat":"特色火锅","qm25":1.1803,"wy25":1.2478,"qm26":1.1484,"wy26":1.2067,"qm_yoy":-0.0319,"wy_yoy":-0.0411},{"band":"A.40元以下","cat":"小火锅","qm25":1.1506,"wy25":1.1366,"qm26":1.1315,"wy26":1.1061,"qm_yoy":-0.0192,"wy_yoy":-0.0305},{"band":"A.40元以下","cat":"异地地方菜","qm25":1.0699,"wy25":1.1294,"qm26":1.0795,"wy26":1.1178,"qm_yoy":0.0095,"wy_yoy":-0.0116},{"band":"A.40元以下","cat":"异国正餐","qm25":1.0932,"wy25":1.1933,"qm26":1.0821,"wy26":1.0983,"qm_yoy":-0.0111,"wy_yoy":-0.0949},{"band":"A.40元以下","cat":"自助餐","qm25":1.1902,"wy25":1.1966,"qm26":1.1627,"wy26":1.1741,"qm_yoy":-0.0275,"wy_yoy":-0.0224},{"band":"A.40元以下","cat":"自助火锅","qm25":1.2565,"wy25":1.3359,"qm26":1.2429,"wy26":1.2979,"qm_yoy":-0.0137,"wy_yoy":-0.038},{"band":"A.40元以下","cat":"自助烧烤","qm25":1.2741,"wy25":1.2374,"qm26":1.1924,"wy26":1.1428,"qm_yoy":-0.0817,"wy_yoy":-0.0947},{"band":"B.40-60元","cat":"__TOTAL__","qm25":1.158,"wy25":1.3058,"qm26":1.1668,"wy26":1.279,"qm_yoy":0.0089,"wy_yoy":-0.0268},{"band":"B.40-60元","cat":"本地地方菜","qm25":1.1757,"wy25":1.4121,"qm26":1.1745,"wy26":1.3949,"qm_yoy":-0.0012,"wy_yoy":-0.0172},{"band":"B.40-60元","cat":"单品休闲餐","qm25":1.0789,"wy25":1.2639,"qm26":1.1345,"wy26":1.2261,"qm_yoy":0.0556,"wy_yoy":-0.0378},{"band":"B.40-60元","cat":"火锅","qm25":1.2425,"wy25":1.3431,"qm26":1.2108,"wy26":1.2923,"qm_yoy":-0.0317,"wy_yoy":-0.0507},{"band":"B.40-60元","cat":"烤串","qm25":1.0521,"wy25":1.2402,"qm26":1.0611,"wy26":1.2024,"qm_yoy":0.009,"wy_yoy":-0.0378},{"band":"B.40-60元","cat":"辣锅","qm25":1.2655,"wy25":1.3743,"qm26":1.2526,"wy26":1.3623,"qm_yoy":-0.0129,"wy_yoy":-0.012},{"band":"B.40-60元","cat":"其他正餐","qm25":1.1391,"wy25":1.4183,"qm26":1.1991,"wy26":1.402,"qm_yoy":0.06,"wy_yoy":-0.0162},{"band":"B.40-60元","cat":"烧烤","qm25":1.2284,"wy25":1.3347,"qm26":1.2104,"wy26":1.2821,"qm_yoy":-0.0181,"wy_yoy":-0.0526},{"band":"B.40-60元","cat":"特色菜","qm25":1.1323,"wy25":1.3354,"qm26":1.1637,"wy26":1.3447,"qm_yoy":0.0314,"wy_yoy":0.0093},{"band":"B.40-60元","cat":"特色火锅","qm25":1.2141,"wy25":1.3298,"qm26":1.1929,"wy26":1.3088,"qm_yoy":-0.0212,"wy_yoy":-0.021},{"band":"B.40-60元","cat":"小火锅","qm25":1.1799,"wy25":1.2094,"qm26":1.2013,"wy26":1.1318,"qm_yoy":0.0214,"wy_yoy":-0.0776},{"band":"B.40-60元","cat":"异地地方菜","qm25":1.1226,"wy25":1.199,"qm26":1.1286,"wy26":1.1844,"qm_yoy":0.006,"wy_yoy":-0.0146},{"band":"B.40-60元","cat":"异国正餐","qm25":1.1088,"wy25":1.2173,"qm26":1.1288,"wy26":1.1581,"qm_yoy":0.02,"wy_yoy":-0.0592},{"band":"B.40-60元","cat":"自助餐","qm25":1.2236,"wy25":1.2638,"qm26":1.2886,"wy26":1.2667,"qm_yoy":0.065,"wy_yoy":0.0028},{"band":"B.40-60元","cat":"自助火锅","qm25":1.1887,"wy25":1.2273,"qm26":1.2725,"wy26":1.2359,"qm_yoy":0.0838,"wy_yoy":0.0085},{"band":"B.40-60元","cat":"自助烧烤","qm25":1.3896,"wy25":1.3376,"qm26":1.3614,"wy26":1.3203,"qm_yoy":-0.0282,"wy_yoy":-0.0173},{"band":"C.60-80元","cat":"__TOTAL__","qm25":1.1535,"wy25":1.2837,"qm26":1.1572,"wy26":1.2656,"qm_yoy":0.0037,"wy_yoy":-0.018},{"band":"C.60-80元","cat":"本地地方菜","qm25":1.1418,"wy25":1.3896,"qm26":1.1625,"wy26":1.3952,"qm_yoy":0.0207,"wy_yoy":0.0057},{"band":"C.60-80元","cat":"单品休闲餐","qm25":1.0089,"wy25":1.194,"qm26":1.1085,"wy26":1.1852,"qm_yoy":0.0996,"wy_yoy":-0.0087},{"band":"C.60-80元","cat":"火锅","qm25":1.1907,"wy25":1.2935,"qm26":1.1666,"wy26":1.2628,"qm_yoy":-0.0241,"wy_yoy":-0.0307},{"band":"C.60-80元","cat":"烤串","qm25":0.9961,"wy25":1.1682,"qm26":1.0187,"wy26":1.1487,"qm_yoy":0.0226,"wy_yoy":-0.0195},{"band":"C.60-80元","cat":"辣锅","qm25":1.3114,"wy25":1.3727,"qm26":1.2381,"wy26":1.3233,"qm_yoy":-0.0733,"wy_yoy":-0.0494},{"band":"C.60-80元","cat":"其他正餐","qm25":1.177,"wy25":1.3959,"qm26":1.2091,"wy26":1.4223,"qm_yoy":0.0322,"wy_yoy":0.0264},{"band":"C.60-80元","cat":"烧烤","qm25":1.2324,"wy25":1.2756,"qm26":1.2193,"wy26":1.2679,"qm_yoy":-0.0131,"wy_yoy":-0.0077},{"band":"C.60-80元","cat":"特色菜","qm25":1.1701,"wy25":1.3725,"qm26":1.176,"wy26":1.3768,"qm_yoy":0.0059,"wy_yoy":0.0044},{"band":"C.60-80元","cat":"特色火锅","qm25":1.219,"wy25":1.3292,"qm26":1.1886,"wy26":1.2852,"qm_yoy":-0.0304,"wy_yoy":-0.044},{"band":"C.60-80元","cat":"小火锅","qm25":1.1811,"wy25":1.1863,"qm26":1.1044,"wy26":1.1215,"qm_yoy":-0.0767,"wy_yoy":-0.0648},{"band":"C.60-80元","cat":"异地地方菜","qm25":1.0762,"wy25":1.1378,"qm26":1.0871,"wy26":1.1416,"qm_yoy":0.011,"wy_yoy":0.0038},{"band":"C.60-80元","cat":"异国正餐","qm25":1.1244,"wy25":1.2187,"qm26":1.1377,"wy26":1.1652,"qm_yoy":0.0133,"wy_yoy":-0.0535},{"band":"C.60-80元","cat":"自助餐","qm25":1.4111,"wy25":1.6236,"qm26":1.3286,"wy26":1.4779,"qm_yoy":-0.0825,"wy_yoy":-0.1457},{"band":"C.60-80元","cat":"自助火锅","qm25":1.3017,"wy25":1.3388,"qm26":1.281,"wy26":1.3223,"qm_yoy":-0.0207,"wy_yoy":-0.0165},{"band":"C.60-80元","cat":"自助烧烤","qm25":1.31,"wy25":1.2913,"qm26":1.317,"wy26":1.2836,"qm_yoy":0.007,"wy_yoy":-0.0077},{"band":"D.80元以上","cat":"__TOTAL__","qm25":1.0482,"wy25":1.1638,"qm26":1.0905,"wy26":1.1738,"qm_yoy":0.0423,"wy_yoy":0.01},{"band":"D.80元以上","cat":"本地地方菜","qm25":1.0331,"wy25":1.2745,"qm26":1.0787,"wy26":1.3009,"qm_yoy":0.0456,"wy_yoy":0.0265},{"band":"D.80元以上","cat":"单品休闲餐","qm25":0.7916,"wy25":1.1216,"qm26":0.9002,"wy26":1.1274,"qm_yoy":0.1086,"wy_yoy":0.0058},{"band":"D.80元以上","cat":"火锅","qm25":1.0813,"wy25":1.1374,"qm26":1.117,"wy26":1.1415,"qm_yoy":0.0357,"wy_yoy":0.0042},{"band":"D.80元以上","cat":"烤串","qm25":0.9391,"wy25":1.0756,"qm26":0.9784,"wy26":1.0563,"qm_yoy":0.0393,"wy_yoy":-0.0192},{"band":"D.80元以上","cat":"辣锅","qm25":1.207,"wy25":1.2684,"qm26":1.1747,"wy26":1.2032,"qm_yoy":-0.0322,"wy_yoy":-0.0652},{"band":"D.80元以上","cat":"其他正餐","qm25":1.0402,"wy25":1.3332,"qm26":1.0886,"wy26":1.3986,"qm_yoy":0.0485,"wy_yoy":0.0653},{"band":"D.80元以上","cat":"烧烤","qm25":1.1473,"wy25":1.1479,"qm26":1.1817,"wy26":1.1757,"qm_yoy":0.0344,"wy_yoy":0.0278},{"band":"D.80元以上","cat":"特色菜","qm25":1.0076,"wy25":1.1813,"qm26":1.0567,"wy26":1.2034,"qm_yoy":0.0491,"wy_yoy":0.0221},{"band":"D.80元以上","cat":"特色火锅","qm25":1.1554,"wy25":1.2301,"qm26":1.1666,"wy26":1.2027,"qm_yoy":0.0111,"wy_yoy":-0.0275},{"band":"D.80元以上","cat":"小火锅","qm25":1.0963,"wy25":1.0938,"qm26":1.0548,"wy26":1.0489,"qm_yoy":-0.0415,"wy_yoy":-0.0449},{"band":"D.80元以上","cat":"异地地方菜","qm25":0.9841,"wy25":1.0534,"qm26":1.0239,"wy26":1.083,"qm_yoy":0.0398,"wy_yoy":0.0296},{"band":"D.80元以上","cat":"异国正餐","qm25":1.0155,"wy25":1.0439,"qm26":1.0697,"wy26":1.0668,"qm_yoy":0.0542,"wy_yoy":0.023},{"band":"D.80元以上","cat":"自助餐","qm25":1.2476,"wy25":1.3384,"qm26":1.3025,"wy26":1.4065,"qm_yoy":0.0549,"wy_yoy":0.068},{"band":"D.80元以上","cat":"自助火锅","qm25":1.2796,"wy25":1.28,"qm26":1.2714,"wy26":1.2727,"qm_yoy":-0.0082,"wy_yoy":-0.0073},{"band":"D.80元以上","cat":"自助烧烤","qm25":1.3025,"wy25":1.3149,"qm26":1.2844,"wy26":1.2734,"qm_yoy":-0.0181,"wy_yoy":-0.0415}];
+const RG={"东北":{"正餐整体":{"wy26":1.3223,"wy_yoy":0.0265},"本地地方菜":{"wy26":1.5046,"wy_yoy":0.0997},"特色菜":{"wy26":1.3641,"wy_yoy":0.0858},"异地地方菜":{"wy26":1.2194,"wy_yoy":0.0285},"火锅":{"wy26":1.2535,"wy_yoy":-0.0408},"辣锅":{"wy26":1.2879,"wy_yoy":-0.0565},"特色火锅":{"wy26":1.2466,"wy_yoy":-0.0361},"小火锅":{"wy26":1.1344,"wy_yoy":-0.0733},"烧烤":{"wy26":1.4034,"wy_yoy":0.0567},"烤串":{"wy26":1.2493,"wy_yoy":0.0616},"单品休闲餐":{"wy26":1.3435,"wy_yoy":0.0565},"自助火锅":{"wy26":1.2288,"wy_yoy":-0.0122},"自助烧烤":{"wy26":1.2474,"wy_yoy":0.0313},"自助餐":{"wy26":1.4156,"wy_yoy":0.0195}},"西北":{"正餐整体":{"wy26":1.2293,"wy_yoy":0.0067},"本地地方菜":{"wy26":1.4178,"wy_yoy":0.0951},"特色菜":{"wy26":1.3025,"wy_yoy":0.0505},"异地地方菜":{"wy26":1.2307,"wy_yoy":0.0197},"火锅":{"wy26":1.2707,"wy_yoy":-0.0178},"辣锅":{"wy26":1.1362,"wy_yoy":-0.0814},"特色火锅":{"wy26":1.2306,"wy_yoy":-0.0352},"小火锅":{"wy26":1.0237,"wy_yoy":-0.0875},"烧烤":{"wy26":1.1986,"wy_yoy":0.0205},"烤串":{"wy26":1.1942,"wy_yoy":0.0304},"单品休闲餐":{"wy26":1.2019,"wy_yoy":-0.0103},"自助火锅":{"wy26":1.212,"wy_yoy":-0.0713},"自助烧烤":{"wy26":1.2814,"wy_yoy":0.0501},"自助餐":{"wy26":1.3536,"wy_yoy":-0.0152}},"华北":{"正餐整体":{"wy26":1.2485,"wy_yoy":0.0208},"本地地方菜":{"wy26":1.5723,"wy_yoy":0.1008},"特色菜":{"wy26":1.3728,"wy_yoy":0.0352},"异地地方菜":{"wy26":1.1044,"wy_yoy":0.0231},"火锅":{"wy26":1.2199,"wy_yoy":0.0396},"辣锅":{"wy26":1.329,"wy_yoy":0.0476},"特色火锅":{"wy26":1.245,"wy_yoy":0.034},"小火锅":{"wy26":1.1088,"wy_yoy":-0.0213},"烧烤":{"wy26":1.2541,"wy_yoy":0.0052},"烤串":{"wy26":1.1654,"wy_yoy":-0.0376},"单品休闲餐":{"wy26":1.1778,"wy_yoy":-0.0417},"自助火锅":{"wy26":1.2551,"wy_yoy":0.0283},"自助烧烤":{"wy26":1.2735,"wy_yoy":0.0012},"自助餐":{"wy26":1.3599,"wy_yoy":0.0281}},"华东":{"正餐整体":{"wy26":1.1915,"wy_yoy":0.0067},"本地地方菜":{"wy26":1.39,"wy_yoy":0.0301},"特色菜":{"wy26":1.2764,"wy_yoy":0.023},"异地地方菜":{"wy26":1.1239,"wy_yoy":0.0234},"火锅":{"wy26":1.1096,"wy_yoy":-0.0648},"辣锅":{"wy26":1.2241,"wy_yoy":-0.0731},"特色火锅":{"wy26":1.1792,"wy_yoy":-0.0361},"小火锅":{"wy26":1.0996,"wy_yoy":-0.0276},"烧烤":{"wy26":1.1802,"wy_yoy":-0.0013},"烤串":{"wy26":1.1073,"wy_yoy":0.006},"单品休闲餐":{"wy26":1.1132,"wy_yoy":0.0265},"自助火锅":{"wy26":1.2973,"wy_yoy":-0.019},"自助烧烤":{"wy26":1.2929,"wy_yoy":0.0297},"自助餐":{"wy26":1.3322,"wy_yoy":0.0406}},"华中":{"正餐整体":{"wy26":1.3004,"wy_yoy":-0.0542},"本地地方菜":{"wy26":1.2798,"wy_yoy":-0.1884},"特色菜":{"wy26":1.2355,"wy_yoy":-0.1514},"异地地方菜":{"wy26":1.1464,"wy_yoy":-0.0658},"火锅":{"wy26":1.1653,"wy_yoy":-0.3163},"辣锅":{"wy26":1.1018,"wy_yoy":-0.1373},"特色火锅":{"wy26":1.1642,"wy_yoy":-0.1657},"小火锅":{"wy26":1.0253,"wy_yoy":-0.136},"烧烤":{"wy26":1.0578,"wy_yoy":-0.1594},"烤串":{"wy26":1.0847,"wy_yoy":-0.1511},"单品休闲餐":{"wy26":1.1106,"wy_yoy":-0.0727},"自助火锅":{"wy26":1.0811,"wy_yoy":-0.4148},"自助烧烤":{"wy26":1.0137,"wy_yoy":-0.5352},"自助餐":{"wy26":1.0897,"wy_yoy":-0.6478}},"川渝":{"正餐整体":{"wy26":1.2762,"wy_yoy":-0.0139},"本地地方菜":{"wy26":1.2744,"wy_yoy":-0.0056},"特色菜":{"wy26":1.2384,"wy_yoy":0.0157},"异地地方菜":{"wy26":1.1831,"wy_yoy":0.0356},"火锅":{"wy26":1.2512,"wy_yoy":-0.0165},"辣锅":{"wy26":1.4044,"wy_yoy":-0.0368},"特色火锅":{"wy26":1.333,"wy_yoy":-0.0294},"小火锅":{"wy26":1.2685,"wy_yoy":-0.0234},"烧烤":{"wy26":1.219,"wy_yoy":-0.0313},"烤串":{"wy26":1.1753,"wy_yoy":-0.0147},"单品休闲餐":{"wy26":1.1736,"wy_yoy":-0.0483},"自助火锅":{"wy26":1.2272,"wy_yoy":-0.0151},"自助烧烤":{"wy26":1.2783,"wy_yoy":-0.0247},"自助餐":{"wy26":1.1992,"wy_yoy":-0.0108}},"云贵":{"正餐整体":{"wy26":1.2761,"wy_yoy":-0.0606},"本地地方菜":{"wy26":1.2729,"wy_yoy":-0.1066},"特色菜":{"wy26":1.1598,"wy_yoy":-0.0868},"异地地方菜":{"wy26":1.1018,"wy_yoy":-0.0455},"火锅":{"wy26":1.3142,"wy_yoy":0.002},"辣锅":{"wy26":1.3768,"wy_yoy":0.0889},"特色火锅":{"wy26":1.4416,"wy_yoy":-0.0719},"小火锅":{"wy26":1.2391,"wy_yoy":-0.0321},"烧烤":{"wy26":1.218,"wy_yoy":-0.0778},"烤串":{"wy26":1.1981,"wy_yoy":-0.1124},"单品休闲餐":{"wy26":1.1476,"wy_yoy":-0.1186},"自助火锅":{"wy26":1.4267,"wy_yoy":0.1064},"自助烧烤":{"wy26":1.3722,"wy_yoy":0.0694},"自助餐":{"wy26":1.6445,"wy_yoy":0.0414}},"华南":{"正餐整体":{"wy26":1.1916,"wy_yoy":-0.0058},"本地地方菜":{"wy26":1.2332,"wy_yoy":-0.0013},"特色菜":{"wy26":1.2496,"wy_yoy":0.0069},"异地地方菜":{"wy26":1.1097,"wy_yoy":-0.0221},"火锅":{"wy26":1.2826,"wy_yoy":0.0327},"辣锅":{"wy26":1.1844,"wy_yoy":-0.0286},"特色火锅":{"wy26":1.2108,"wy_yoy":0.016},"小火锅":{"wy26":1.1636,"wy_yoy":-0.023},"烧烤":{"wy26":1.1357,"wy_yoy":0.0339},"烤串":{"wy26":1.0367,"wy_yoy":-0.0564},"单品休闲餐":{"wy26":1.1611,"wy_yoy":-0.0518},"自助火锅":{"wy26":1.4187,"wy_yoy":0.0934},"自助烧烤":{"wy26":1.3642,"wy_yoy":-0.0009},"自助餐":{"wy26":1.5075,"wy_yoy":0.0036}}};
+const REGIONS=["东北", "西北", "华北", "华东", "华中", "川渝", "云贵", "华南"];
+const QM='#b8a49a',WY='#8098a8',POS='#c06040',NEG='#6080a0';
+
+// Color palettes with strong differentiation within each group
+const GRP_COLORS={
+  "地方菜系":['#c06040','#e09060','#7a9870','#506090'],
+  "火锅系":  ['#c04050','#d08040','#6090b0','#8060a0'],
+  "烧烤&休闲":['#b07030','#d0a050','#50806080'],
+  "自助系":  ['#905060','#a07850','#608070'],
+  "地方菜":  ['#c06040','#e09060','#7a9870'],
+  "火锅系rg":['#c04050','#d08040','#6090b0','#8060a0'],
+  "烧烤&休闲rg":['#b07030','#d0a050','#508060'],
+  "自助系rg":['#905060','#a07850','#608070'],
+  "正餐整体":['#b8765a']
+};
+
+const CAT_GROUPS_PD={
+  "地方菜系":["本地地方菜","异地地方菜","特色菜","异国正餐"],
+  "火锅系":["火锅","辣锅","特色火锅","小火锅"],
+  "烧烤&休闲":["烧烤","烤串","单品休闲餐","其他正餐"],
+  "自助系":["自助火锅","自助烧烤","自助餐"]
+};
+const CAT_GROUPS_RG={
+  "正餐整体":["正餐整体"],
+  "地方菜":["本地地方菜","特色菜","异地地方菜"],
+  "火锅系":["火锅","辣锅","特色火锅","小火锅"],
+  "烧烤&休闲":["烧烤","烤串","单品休闲餐"],
+  "自助系":["自助火锅","自助烧烤","自助餐"]
+};
+
+function I(id){return echarts.init(document.getElementById(id))}
+
+// Section 1
+function s1(){
+  const tiersShort=['整体','高线','中低旅游','中低非旅'];
+  const catGroups=[[0,1,2,3],[4,5,6,7],[8,9,10,11]];
+  const ids=[['a1','a4'],['a2','a5'],['a3','a6']];
+  catGroups.forEach((indices,gi)=>{
+    const items=indices.map(i=>OV[i]);
+    I(ids[gi][0]).setOption({
+      grid:{left:40,right:8,top:8,bottom:22},
+      xAxis:{type:'category',data:tiersShort,axisLabel:{fontSize:9}},
+      yAxis:{type:'value',min:0.9,axisLabel:{fontSize:8},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:[
+        {type:'bar',data:items.map(d=>d.qm_26),itemStyle:{color:QM},barWidth:'30%',barGap:'8%',label:{show:true,position:'top',fontSize:8,formatter:p=>p.value.toFixed(2)}},
+        {type:'bar',data:items.map(d=>d.wy_26),itemStyle:{color:WY},barWidth:'30%',label:{show:true,position:'top',fontSize:8,formatter:p=>p.value.toFixed(2)},
+          markLine:{silent:true,symbol:'none',lineStyle:{color:'#bbb',type:'dashed'},data:[{yAxis:1}]}}
+      ],tooltip:{trigger:'axis'}
+    });
+    I(ids[gi][1]).setOption({
+      grid:{left:42,right:8,top:8,bottom:22},
+      xAxis:{type:'category',data:tiersShort,axisLabel:{fontSize:9}},
+      yAxis:{type:'value',axisLabel:{fontSize:8,formatter:v=>(v*100).toFixed(0)+'%'},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:[
+        {type:'bar',data:items.map(d=>d.qm_amt_yoy),itemStyle:{color:QM},barWidth:'30%',barGap:'8%',label:{show:true,position:'top',fontSize:8,formatter:p=>(p.value*100).toFixed(1)+'%'}},
+        {type:'bar',data:items.map(d=>d.wy_amt_yoy),itemStyle:{color:WY},barWidth:'30%',label:{show:true,position:'top',fontSize:8,formatter:p=>(p.value*100).toFixed(1)+'%'},
+          markLine:{silent:true,symbol:'none',lineStyle:{color:'#bbb',type:'dashed'},data:[{yAxis:0}]}}
+      ],tooltip:{trigger:'axis'}
+    });
+  });
+}
+
+// Positive/negative color per value
+function yoyColor(v){ return v>=0?POS:NEG; }
+
+// Section 2: Matrix YoY with pos/neg colors
+function s2(){
+  const bands=['A.40元以下','B.40-60元','C.60-80元','D.80元以上'];
+  const grpKeys=Object.keys(CAT_GROUPS_PD);
+  const idPrefixes=['m1','m2','m3','m4'];
+  const idSuffs=['a','b','c','d'];
+  
+  grpKeys.forEach((grpName,gi)=>{
+    const cats=CAT_GROUPS_PD[grpName];
+    bands.forEach((band,bi)=>{
+      const items=cats.map(c=>PD.find(d=>d.band===band&&d.cat===c)).filter(Boolean);
+      if(!items.length) return;
+      const catNames=items.map(d=>d.cat);
+      const chartId=idPrefixes[gi]+idSuffs[bi];
+      
+      // Compute axis range with some padding
+      const allVals=items.flatMap(d=>[d.qm_yoy,d.wy_yoy]);
+      const vMin=Math.min(...allVals);
+      const vMax=Math.max(...allVals);
+      const pad=Math.max(Math.abs(vMin),Math.abs(vMax))*0.15+0.005;
+      
+      I(chartId).setOption({
+        grid:{left:68,right:22,top:4,bottom:14},
+        yAxis:{type:'category',data:catNames,axisLabel:{fontSize:9}},
+        xAxis:{type:'value',axisLabel:{fontSize:8,formatter:v=>(v*100).toFixed(0)+'%'},
+          min:vMin-pad,max:vMax+pad,
+          splitLine:{lineStyle:{color:'#ebe7e3'}}},
+        series:[
+          {name:'清明',type:'bar',
+            data:items.map(d=>({value:d.qm_yoy,itemStyle:{color:yoyColor(d.qm_yoy),opacity:0.6}})),
+            barWidth:'32%',barGap:'6%'},
+          {name:'五一',type:'bar',
+            data:items.map(d=>({value:d.wy_yoy,itemStyle:{color:yoyColor(d.wy_yoy)}})),
+            barWidth:'32%',
+            label:{show:true,position:'right',fontSize:8,formatter:p=>(p.value*100).toFixed(1)+'%'},
+            markLine:{silent:true,symbol:'none',lineStyle:{color:'#999',type:'dashed'},data:[{xAxis:0}]}}
+        ],
+        tooltip:{trigger:'axis',formatter:ps=>catNames[ps[0].dataIndex]+'<br>'+ps.map(p=>p.seriesName+': '+(p.value*100).toFixed(1)+'%').join('<br>')}
+      });
+    });
+  });
+}
+
+// Section 3: Region YoY only, distinct colors, compressed axis
+function s3(){
+  const grpKeys=Object.keys(CAT_GROUPS_RG);
+  const ids=['r1','r2','r3','r4','r5'];
+  const colorSets=[
+    ['#b8765a'],
+    ['#c06040','#6090b0','#8a9870'],
+    ['#c04050','#d08040','#6090b0','#8060a0'],
+    ['#b07030','#d0a050','#508060'],
+    ['#905060','#a07850','#608070']
+  ];
+  
+  grpKeys.forEach((grpName,gi)=>{
+    const cats=CAT_GROUPS_RG[grpName];
+    const colors=colorSets[gi];
+    
+    // Compute axis range
+    const allVals=[];
+    REGIONS.forEach(r=>cats.forEach(cat=>{
+      if(RG[r]&&RG[r][cat]) allVals.push(RG[r][cat].wy_yoy);
+    }));
+    const vMin=Math.min(...allVals), vMax=Math.max(...allVals);
+    const pad=Math.max(Math.abs(vMin),Math.abs(vMax))*0.1+0.005;
+    
+    I(ids[gi]).setOption({
+      grid:{left:42,right:55,top:28,bottom:14},
+      legend:{data:cats,right:0,top:0,textStyle:{fontSize:9},orient:'vertical'},
+      yAxis:{type:'category',data:REGIONS,axisLabel:{fontSize:9}},
+      xAxis:{type:'value',
+        axisLabel:{fontSize:8,formatter:v=>(v*100).toFixed(0)+'%'},
+        min:vMin-pad,max:vMax+pad,
+        splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:cats.map((cat,ci)=>({
+        name:cat,type:'bar',
+        data:REGIONS.map(r=>({
+          value:RG[r]&&RG[r][cat]?RG[r][cat].wy_yoy:null,
+          itemStyle:{color:colors[ci%colors.length],
+            opacity:RG[r]&&RG[r][cat]&&RG[r][cat].wy_yoy>=0?1:0.55}
+        })),
+        itemStyle:{color:colors[ci%colors.length]},
+        barWidth:cats.length===1?'40%':cats.length<=3?'22%':'16%',
+        label:cats.length===1?{show:true,position:'right',fontSize:8,
+          formatter:p=>p.value?(p.value*100).toFixed(1)+'%':''}:undefined
+      })),
+      tooltip:{trigger:'axis',formatter:ps=>ps[0].name+'<br>'+ps.filter(p=>p.value!==null).map(p=>p.seriesName+': '+(p.value*100).toFixed(1)+'%').join('<br>')},
+      markLine:{silent:true,symbol:'none',lineStyle:{color:'#999',type:'dashed'}}
+    });
+  });
+}
+
+window.addEventListener('load',()=>{s1();s2();s3()});
+window.addEventListener('resize',()=>{document.querySelectorAll('[id]').forEach(el=>{const c=echarts.getInstanceByDom(el);if(c)c.resize()})});
+</script>
+</body>
+</html>

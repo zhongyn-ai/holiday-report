@@ -74,7 +74,7 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 <div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m2d"></div></div>
 </div>
 
-<div class="grp-label">烧烤&休闲</div>
+<div class="grp-label">烧烤/烤串</div>
 <div class="row4">
 <div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m3a"></div></div>
 <div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m3b"></div></div>
@@ -103,10 +103,10 @@ h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:
 <div class="grp-label">地方菜（本地/特色/异地）</div>
 <div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r2"></div></div>
 
-<div class="grp-label">火锅系（火锅/辣锅/特色火锅/小火锅）</div>
+<div class="grp-label">火锅系（辣锅/特色火锅/小火锅/其他火锅/单品休闲餐）</div>
 <div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r3"></div></div>
 
-<div class="grp-label">烧烤&休闲（烧烤/烤串/单品休闲餐）</div>
+<div class="grp-label">烧烤/烤串（烧烤/烤串）</div>
 <div class="card" style="margin-bottom:10px"><div class="ct">YoY</div><div class="ch" id="r4"></div></div>
 
 <div class="grp-label">自助系（自助火锅/自助烧烤/自助餐）</div>
@@ -136,17 +136,18 @@ const GRP_COLORS={
   "正餐整体":['#b8765a']
 };
 
+const CAT_ALIAS={'其他火锅':'火锅'};
 const CAT_GROUPS_PD={
-  "地方菜系":["本地地方菜","异地地方菜","特色菜","异国正餐"],
-  "火锅系":["火锅","辣锅","特色火锅","小火锅"],
-  "烧烤&休闲":["烧烤","烤串","单品休闲餐","其他正餐"],
+  "地方菜系":["本地地方菜","其他正餐","异地地方菜","特色菜"],
+  "火锅系":["辣锅","特色火锅","小火锅","其他火锅","单品休闲餐"],
+  "烧烤/烤串":["烧烤","烤串"],
   "自助系":["自助火锅","自助烧烤","自助餐"]
 };
 const CAT_GROUPS_RG={
   "正餐整体":["正餐整体"],
   "地方菜":["本地地方菜","特色菜","异地地方菜"],
-  "火锅系":["火锅","辣锅","特色火锅","小火锅"],
-  "烧烤&休闲":["烧烤","烤串","单品休闲餐"],
+  "火锅系":["辣锅","特色火锅","小火锅","其他火锅","单品休闲餐"],
+  "烧烤/烤串":["烧烤","烤串"],
   "自助系":["自助火锅","自助烧烤","自助餐"]
 };
 
@@ -195,7 +196,7 @@ function s2(){
   grpKeys.forEach((grpName,gi)=>{
     const cats=CAT_GROUPS_PD[grpName];
     bands.forEach((band,bi)=>{
-      const items=cats.map(c=>PD.find(d=>d.band===band&&d.cat===c)).filter(Boolean);
+      const items=cats.map(c=>{const r=PD.find(d=>d.band===band&&d.cat===(CAT_ALIAS[c]||c));return r?{...r,cat:c}:null;}).filter(Boolean);
       if(!items.length) return;
       const catNames=items.map(d=>d.cat);
       const chartId=idPrefixes[gi]+idSuffs[bi];
@@ -234,9 +235,9 @@ function s3(){
   const ids=['r1','r2','r3','r4','r5'];
   const colorSets=[
     ['#b8765a'],
-    ['#c06040','#6090b0','#8a9870'],
-    ['#c04050','#d08040','#6090b0','#8060a0'],
-    ['#b07030','#d0a050','#508060'],
+    ['#c06040','#8a9870','#6090b0'],
+    ['#c04050','#d08040','#6090b0','#8060a0','#70a080'],
+    ['#b07030','#d0a050'],
     ['#905060','#a07850','#608070']
   ];
   
@@ -247,7 +248,8 @@ function s3(){
     // Compute axis range
     const allVals=[];
     REGIONS.forEach(r=>cats.forEach(cat=>{
-      if(RG[r]&&RG[r][cat]) allVals.push(RG[r][cat].wy_yoy);
+      const k=CAT_ALIAS[cat]||cat;
+      if(RG[r]&&RG[r][k]) allVals.push(RG[r][k].wy_yoy);
     }));
     const vMin=Math.min(...allVals), vMax=Math.max(...allVals);
     const pad=Math.max(Math.abs(vMin),Math.abs(vMax))*0.1+0.005;
@@ -263,9 +265,9 @@ function s3(){
       series:cats.map((cat,ci)=>({
         name:cat,type:'bar',
         data:REGIONS.map(r=>({
-          value:RG[r]&&RG[r][cat]?RG[r][cat].wy_yoy:null,
+          value:RG[r]&&RG[r][CAT_ALIAS[cat]||cat]?RG[r][CAT_ALIAS[cat]||cat].wy_yoy:null,
           itemStyle:{color:colors[ci%colors.length],
-            opacity:RG[r]&&RG[r][cat]&&RG[r][cat].wy_yoy>=0?1:0.55}
+            opacity:RG[r]&&RG[r][CAT_ALIAS[cat]||cat]&&RG[r][CAT_ALIAS[cat]||cat].wy_yoy>=0?1:0.55}
         })),
         itemStyle:{color:colors[ci%colors.length]},
         barWidth:cats.length===1?'40%':cats.length<=3?'22%':'16%',

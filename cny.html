@@ -207,7 +207,7 @@ function s4(){
           min:-0.11,max:0.31,splitLine:{lineStyle:{color:'#ebe7e3'}}},
         series:[{type:'bar',
           data:items.map(d=>({value:d.yoy,itemStyle:{color:yC(d.yoy)}})),
-          barWidth:'45%',
+          barWidth:14,
           label:{show:true,position:'right',fontSize:8,formatter:p=>p.value.toFixed(2)},
           markLine:{silent:true,symbol:'none',lineStyle:{color:'#bbb',type:'dashed'},data:[{xAxis:0}]}
         }],

@@ -216,10 +216,10 @@ function s2(){
         series:[
           {name:'清明',type:'bar',
             data:items.map(d=>({value:d.qm_yoy,itemStyle:{color:yoyColor(d.qm_yoy),opacity:0.6}})),
-            barWidth:'32%',barGap:'6%'},
+            barWidth:10,barGap:'6%'},
           {name:'五一',type:'bar',
             data:items.map(d=>({value:d.wy_yoy,itemStyle:{color:yoyColor(d.wy_yoy)}})),
-            barWidth:'32%',
+            barWidth:10,
             label:{show:true,position:'right',fontSize:8,formatter:p=>p.value.toFixed(2)},
             markLine:{silent:true,symbol:'none',lineStyle:{color:'#999',type:'dashed'},data:[{xAxis:0}]}}
         ],

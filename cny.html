@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>2026春节 爆发系数复盘</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,sans-serif;background:#f2f1ee;color:#4a4540;padding:20px 28px;max-width:1440px;margin:0 auto}
+h1{font-size:17px;color:#5a4a3a;text-align:center;margin-bottom:4px}
+.subtitle{text-align:center;font-size:11px;color:#8a7a6a;margin-bottom:16px;line-height:1.5}
+h2{font-size:14px;color:#5a4a3a;margin:20px 0 8px;padding-left:10px;border-left:3px solid #c8a890}
+.note{font-size:10px;color:#8a7a6a;margin:-4px 0 8px 14px}
+.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px}
+.row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px;margin-bottom:8px}
+.card{background:#faf9f7;border-radius:6px;padding:8px;border:1px solid rgba(200,168,144,.2)}
+.ct{font-size:10px;color:#8a7a6a;margin-bottom:1px}
+.ch{width:100%;height:195px}
+.ch-s{width:100%;height:155px}
+.ch-l{width:100%;height:230px}
+.grp-label{font-size:11px;color:#5a4a3a;font-weight:600;margin:8px 0 4px 4px;padding-left:8px;border-left:2px solid #c8a890}
+.footer{text-align:center;font-size:10px;color:#999;margin-top:20px;padding-top:10px;border-top:1px solid #e0dcd8}
+</style>
+</head>
+<body>
+<h1>2026 春节 爆发系数复盘</h1>
+<p class="subtitle">春节爆发系数远高于清明/五一，中低线旅游城市正餐系数1.72，本地地方菜高线1.94；量价齐升</p>
+
+<h2>一、整体爆发系数（品类×城市线级）</h2>
+<p class="note">X轴=整体/高线/中低线旅游/中低线非旅游；额/量/价三柱并排，同时展示系数与YoY</p>
+<div class="row3">
+<div class="card"><div class="ct">正餐 · 系数（额/量/价）</div><div class="ch" id="a1"></div></div>
+<div class="card"><div class="ct">轻餐 · 系数（额/量/价）</div><div class="ch" id="a2"></div></div>
+<div class="card"><div class="ct">快餐 · 系数（额/量/价）</div><div class="ch" id="a3"></div></div>
+</div>
+<div class="row3">
+<div class="card"><div class="ct">正餐 · YoY（额/量/价）</div><div class="ch" id="a4"></div></div>
+<div class="card"><div class="ct">轻餐 · YoY（额/量/价）</div><div class="ch" id="a5"></div></div>
+<div class="card"><div class="ct">快餐 · YoY（额/量/价）</div><div class="ch" id="a6"></div></div>
+</div>
+
+<h2>二、正餐日度爆发系数趋势（小年→初七）</h2>
+<p class="note">高线 vs 中低线旅游 vs 中低线非旅游，看节前积累与节中高峰</p>
+<div class="card"><div class="ct">各城市线级日度爆发系数（额）</div><div class="ch-l" id="b1"></div></div>
+
+<h2>三、轻餐渠道日度 YoY（商场店 vs 街边/社区店）</h2>
+<p class="note">新中式茶饮/面包甜点/咖啡。暖色=正增长，冷蓝=负增长</p>
+<div class="row2">
+<div class="card"><div class="ct">商场店</div><div class="ch-l" id="c1"></div></div>
+<div class="card"><div class="ct">街边/社区店</div><div class="ch-l" id="c2"></div></div>
+</div>
+
+<h2>四、正餐 品类×价格带（爆发系数YoY）</h2>
+<p class="note">纵向=品类分组（含自助系），横向=价格带。暖色=正增长，冷色=负增长</p>
+
+<div class="grp-label">地方菜系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m1a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m1b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m1c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m1d"></div></div>
+</div>
+<div class="grp-label">火锅系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m2a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m2b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m2c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m2d"></div></div>
+</div>
+<div class="grp-label">烧烤&休闲</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m3a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m3b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m3c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m3d"></div></div>
+</div>
+<div class="grp-label">自助系</div>
+<div class="row4">
+<div class="card"><div class="ct">40元以下</div><div class="ch-s" id="m4a"></div></div>
+<div class="card"><div class="ct">40-60元</div><div class="ch-s" id="m4b"></div></div>
+<div class="card"><div class="ct">60-80元</div><div class="ch-s" id="m4c"></div></div>
+<div class="card"><div class="ct">80元以上</div><div class="ch-s" id="m4d"></div></div>
+</div>
+
+<div class="footer">基期：1/13–1/19（节前普通周）| 春节：1/28小年–2/5初七 | 爆发系数=假期日均/基期日均 | YoY=2026系数-2025系数</div>
+
+<script>
+const OV=[{"cat":"快餐","tier":"整体","amt":1.3771,"cnt":1.0689,"price":1.2882,"amt_yoy":0.058,"cnt_yoy":0.0423,"price_yoy":0.0033},{"cat":"快餐","tier":"高线","amt":1.2522,"cnt":0.959,"price":1.3057,"amt_yoy":0.0689,"cnt_yoy":0.044,"price_yoy":0.0126},{"cat":"快餐","tier":"中低线旅游","amt":1.5433,"cnt":1.2197,"price":1.2654,"amt_yoy":0.0306,"cnt_yoy":0.0453,"price_yoy":-0.0227},{"cat":"快餐","tier":"中低线非旅游","amt":1.5794,"cnt":1.249,"price":1.2646,"amt_yoy":0.0343,"cnt_yoy":0.0299,"price_yoy":-0.0029},{"cat":"轻餐","tier":"整体","amt":1.5319,"cnt":1.263,"price":1.2129,"amt_yoy":0.0535,"cnt_yoy":0.0292,"price_yoy":0.0147},{"cat":"轻餐","tier":"高线","amt":1.3748,"cnt":1.1143,"price":1.2337,"amt_yoy":0.0731,"cnt_yoy":0.0372,"price_yoy":0.0252},{"cat":"轻餐","tier":"中低线旅游","amt":1.7287,"cnt":1.4301,"price":1.2088,"amt_yoy":-0.0172,"cnt_yoy":-0.0065,"price_yoy":-0.0066},{"cat":"轻餐","tier":"中低线非旅游","amt":1.8037,"cnt":1.4929,"price":1.2082,"amt_yoy":0.0304,"cnt_yoy":0.0211,"price_yoy":0.0034},{"cat":"正餐","tier":"整体","amt":1.4599,"cnt":1.1942,"price":1.2225,"amt_yoy":0.0725,"cnt_yoy":0.0474,"price_yoy":0.0127},{"cat":"正餐","tier":"高线","amt":1.2606,"cnt":1.038,"price":1.2144,"amt_yoy":0.0809,"cnt_yoy":0.0497,"price_yoy":0.0207},{"cat":"正餐","tier":"中低线旅游","amt":1.7241,"cnt":1.4121,"price":1.2209,"amt_yoy":0.0458,"cnt_yoy":0.0388,"price_yoy":-0.0011},{"cat":"正餐","tier":"中低线非旅游","amt":1.7428,"cnt":1.4237,"price":1.2241,"amt_yoy":0.0553,"cnt_yoy":0.0441,"price_yoy":0.0009}];
+const PD=[{"band":"A.40元以下","cat":"__TOTAL__","coeff":1.4232,"yoy":0.0882},{"band":"A.40元以下","cat":"本地地方菜","coeff":1.7014,"yoy":0.0658},{"band":"A.40元以下","cat":"特色菜","coeff":1.5753,"yoy":0.2211},{"band":"A.40元以下","cat":"异地地方菜","coeff":1.2792,"yoy":0.04},{"band":"A.40元以下","cat":"异国正餐","coeff":1.158,"yoy":-0.0941},{"band":"A.40元以下","cat":"辣锅","coeff":1.4888,"yoy":-0.0947},{"band":"A.40元以下","cat":"特色火锅","coeff":1.427,"yoy":0.143},{"band":"A.40元以下","cat":"小火锅","coeff":1.2857,"yoy":0.1478},{"band":"A.40元以下","cat":"烧烤","coeff":1.515,"yoy":0.2848},{"band":"A.40元以下","cat":"烤串","coeff":1.6617,"yoy":0.1821},{"band":"A.40元以下","cat":"自助火锅","coeff":1.0251,"yoy":0.006},{"band":"A.40元以下","cat":"自助烧烤","coeff":1.2387,"yoy":-0.0685},{"band":"A.40元以下","cat":"自助餐","coeff":0.9061,"yoy":0.1552},{"band":"A.40元以下","cat":"单品休闲餐","coeff":1.4322,"yoy":0.2207},{"band":"A.40元以下","cat":"火锅","coeff":1.4018,"yoy":0.0571},{"band":"A.40元以下","cat":"其他正餐","coeff":1.4658,"yoy":-0.0203},{"band":"B.40-60元","cat":"__TOTAL__","coeff":1.5593,"yoy":0.0697},{"band":"B.40-60元","cat":"本地地方菜","coeff":1.9388,"yoy":0.1222},{"band":"B.40-60元","cat":"单品休闲餐","coeff":1.4929,"yoy":0.0881},{"band":"B.40-60元","cat":"火锅","coeff":1.5975,"yoy":0.1436},{"band":"B.40-60元","cat":"烤串","coeff":1.557,"yoy":0.0765},{"band":"B.40-60元","cat":"辣锅","coeff":1.63,"yoy":0.0471},{"band":"B.40-60元","cat":"其他正餐","coeff":1.7572,"yoy":-0.0919},{"band":"B.40-60元","cat":"烧烤","coeff":1.5262,"yoy":0.0406},{"band":"B.40-60元","cat":"特色菜","coeff":1.7017,"yoy":0.0697},{"band":"B.40-60元","cat":"特色火锅","coeff":1.6131,"yoy":0.0758},{"band":"B.40-60元","cat":"小火锅","coeff":1.3171,"yoy":0.0549},{"band":"B.40-60元","cat":"异地地方菜","coeff":1.4385,"yoy":0.095},{"band":"B.40-60元","cat":"异国正餐","coeff":1.4759,"yoy":0.1198},{"band":"B.40-60元","cat":"自助餐","coeff":1.2228,"yoy":0.1184},{"band":"B.40-60元","cat":"自助火锅","coeff":1.1311,"yoy":0.1013},{"band":"B.40-60元","cat":"自助烧烤","coeff":1.293,"yoy":0.0523},{"band":"C.60-80元","cat":"__TOTAL__","coeff":1.5149,"yoy":0.074},{"band":"C.60-80元","cat":"本地地方菜","coeff":1.9163,"yoy":0.0789},{"band":"C.60-80元","cat":"单品休闲餐","coeff":1.4323,"yoy":0.0208},{"band":"C.60-80元","cat":"火锅","coeff":1.5414,"yoy":0.0309},{"band":"C.60-80元","cat":"烤串","coeff":1.4313,"yoy":0.1102},{"band":"C.60-80元","cat":"辣锅","coeff":1.5529,"yoy":-0.0226},{"band":"C.60-80元","cat":"其他正餐","coeff":1.6689,"yoy":0.2861},{"band":"C.60-80元","cat":"烧烤","coeff":1.4472,"yoy":0.1197},{"band":"C.60-80元","cat":"特色菜","coeff":1.7543,"yoy":0.1462},{"band":"C.60-80元","cat":"特色火锅","coeff":1.5449,"yoy":0.0743},{"band":"C.60-80元","cat":"小火锅","coeff":1.2547,"yoy":0.0269},{"band":"C.60-80元","cat":"异地地方菜","coeff":1.4058,"yoy":0.0536},{"band":"C.60-80元","cat":"异国正餐","coeff":1.5201,"yoy":0.1355},{"band":"C.60-80元","cat":"自助餐","coeff":1.3615,"yoy":0.0457},{"band":"C.60-80元","cat":"自助火锅","coeff":1.2331,"yoy":0.1271},{"band":"C.60-80元","cat":"自助烧烤","coeff":1.2432,"yoy":0.0932},{"band":"D.80元以上","cat":"__TOTAL__","coeff":1.3686,"yoy":0.0866},{"band":"D.80元以上","cat":"本地地方菜","coeff":1.7319,"yoy":0.0699},{"band":"D.80元以上","cat":"单品休闲餐","coeff":1.2116,"yoy":0.0213},{"band":"D.80元以上","cat":"火锅","coeff":1.3795,"yoy":0.0434},{"band":"D.80元以上","cat":"烤串","coeff":1.1616,"yoy":0.0694},{"band":"D.80元以上","cat":"辣锅","coeff":1.4094,"yoy":0.0341},{"band":"D.80元以上","cat":"其他正餐","coeff":1.4609,"yoy":0.1453},{"band":"D.80元以上","cat":"烧烤","coeff":1.3037,"yoy":0.0783},{"band":"D.80元以上","cat":"特色菜","coeff":1.4888,"yoy":0.1779},{"band":"D.80元以上","cat":"特色火锅","coeff":1.385,"yoy":0.0749},{"band":"D.80元以上","cat":"小火锅","coeff":0.9768,"yoy":0.0435},{"band":"D.80元以上","cat":"异地地方菜","coeff":1.424,"yoy":0.0961},{"band":"D.80元以上","cat":"异国正餐","coeff":1.4052,"yoy":0.0975},{"band":"D.80元以上","cat":"自助餐","coeff":1.2599,"yoy":0.0541},{"band":"D.80元以上","cat":"自助火锅","coeff":1.1451,"yoy":0.0972},{"band":"D.80元以上","cat":"自助烧烤","coeff":1.1886,"yoy":0.0594}];
+const DAILY={"高线":[1.4694,5.673,7.0113,8.3271,9.1748,8.9716,9.3372,9.2529,8.5476],"中低线旅游":[1.7127,6.2715,9.9986,11.3696,13.2994,13.4083,13.3094,12.2754,10.5811],"中低线非旅游":[1.7918,6.107,11.186,11.9022,13.2542,13.4116,13.3321,12.5104,11.0194]};
+const LC_YOY={"商场店":{"新中式茶饮":[0.0755,0.2562,-0.7623,-0.6325,-0.076,-1.5063,0.1613,0.2954,-0.2469],"面包甜点":[0.0231,0.114,0.7093,0.6924,0.5634,-0.0053,0.2026,0.0715,-0.263],"咖啡":[0.1499,0.22,0.031,-0.428,-0.1382,0.1629,0.2824,0.901,0.1812]},"街边/社区店":{"新中式茶饮":[0.1394,0.3797,-0.0934,0.6898,1.1401,0.6325,1.2521,1.2587,-0.0762],"面包甜点":[0.0872,1.0411,1.3269,1.7821,2.4356,1.8262,1.4839,1.3556,0.3425],"咖啡":[0.0979,0.7889,1.0281,1.7244,1.8313,2.1868,2.1487,2.2275,0.2794]}};
+const DAYS=["小年","除夕","初一","初二","初三","初四","初五","初六","初七"];
+const POS='#c06040',NEG='#6080a0';
+const AMT_C='#b8765a',CNT_C='#8098a8',PRICE_C='#90a870';
+const CAT_GROUPS={
+  "地方菜系":["本地地方菜","异地地方菜","特色菜","异国正餐"],
+  "火锅系":["火锅","辣锅","特色火锅","小火锅"],
+  "烧烤&休闲":["烧烤","烤串","单品休闲餐","其他正餐"],
+  "自助系":["自助火锅","自助烧烤","自助餐"]
+};
+function I(id){return echarts.init(document.getElementById(id))}
+function yC(v){return v>=0?POS:NEG}
+
+function s1(){
+  const tS=['整体','高线','中低旅游','中低非旅'];
+  const tF=['整体','高线','中低线旅游','中低线非旅游'];
+  ['正餐','轻餐','快餐'].forEach((cat,gi)=>{
+    const it=tF.map(tf=>OV.find(d=>d.cat===cat&&d.tier===tf));
+    I('a'+(gi+1)).setOption({
+      grid:{left:36,right:8,top:14,bottom:22},
+      legend:{data:['额','量','价'],top:0,textStyle:{fontSize:8}},
+      xAxis:{type:'category',data:tS,axisLabel:{fontSize:9}},
+      yAxis:{type:'value',min:0.9,axisLabel:{fontSize:8},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:[
+        {name:'额',type:'bar',data:it.map(d=>d?d.amt:null),itemStyle:{color:AMT_C},barWidth:'20%',barGap:'4%'},
+        {name:'量',type:'bar',data:it.map(d=>d?d.cnt:null),itemStyle:{color:CNT_C},barWidth:'20%',barGap:'4%'},
+        {name:'价',type:'bar',data:it.map(d=>d?d.price:null),itemStyle:{color:PRICE_C},barWidth:'20%',
+          markLine:{silent:true,symbol:'none',lineStyle:{color:'#ccc',type:'dashed'},data:[{yAxis:1}]}}
+      ],tooltip:{trigger:'axis'}
+    });
+    I('a'+(gi+4)).setOption({
+      grid:{left:42,right:8,top:14,bottom:22},
+      legend:{data:['额','量','价'],top:0,textStyle:{fontSize:8}},
+      xAxis:{type:'category',data:tS,axisLabel:{fontSize:9}},
+      yAxis:{type:'value',axisLabel:{fontSize:8,formatter:v=>v.toFixed(2)},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:[
+        {name:'额',type:'bar',data:it.map(d=>d?d.amt_yoy:null),itemStyle:{color:AMT_C},barWidth:'20%',barGap:'4%'},
+        {name:'量',type:'bar',data:it.map(d=>d?d.cnt_yoy:null),itemStyle:{color:CNT_C},barWidth:'20%',barGap:'4%'},
+        {name:'价',type:'bar',data:it.map(d=>d?d.price_yoy:null),itemStyle:{color:PRICE_C},barWidth:'20%',
+          markLine:{silent:true,symbol:'none',lineStyle:{color:'#ccc',type:'dashed'},data:[{yAxis:0}]}}
+      ],tooltip:{trigger:'axis',formatter:ps=>tS[ps[0].dataIndex]+'<br>'+ps.map(p=>p.seriesName+': '+p.value.toFixed(2)).join('<br>')}
+    });
+  });
+}
+
+function s2(){
+  const tiers=Object.keys(DAILY);
+  const tc={'高线':'#b8765a','中低线旅游':'#8098a8','中低线非旅游':'#90a870'};
+  I('b1').setOption({
+    grid:{left:44,right:10,top:28,bottom:22},
+    legend:{data:tiers,top:0,textStyle:{fontSize:10}},
+    xAxis:{type:'category',data:DAYS,axisLabel:{fontSize:10}},
+    yAxis:{type:'value',axisLabel:{fontSize:9},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+    series:tiers.map(t=>({
+      name:t,type:'line',data:DAILY[t],
+      itemStyle:{color:tc[t]||'#999'},lineStyle:{width:2.5},
+      symbol:'circle',symbolSize:5,
+      markLine:{silent:true,symbol:'none',lineStyle:{color:'#ddd',type:'dashed'},data:[{yAxis:1}]}
+    })),
+    tooltip:{trigger:'axis'}
+  });
+}
+
+function s3(){
+  const types=Object.keys(LC_YOY);
+  const cats=Object.keys(LC_YOY[types[0]]);
+  const cc={'新中式茶饮':'#c06040','面包甜点':'#d0a050','咖啡':'#6090b0'};
+  types.forEach((t,ti)=>{
+    I('c'+(ti+1)).setOption({
+      grid:{left:44,right:10,top:28,bottom:22},
+      legend:{data:cats,top:0,textStyle:{fontSize:9}},
+      xAxis:{type:'category',data:DAYS,axisLabel:{fontSize:9}},
+      yAxis:{type:'value',axisLabel:{fontSize:8,formatter:v=>v.toFixed(1)},splitLine:{lineStyle:{color:'#ebe7e3'}}},
+      series:cats.map(cat=>({
+        name:cat,type:'bar',
+        data:LC_YOY[t][cat].map(v=>({value:v,itemStyle:{color:v>=0?cc[cat]:NEG,opacity:v>=0?0.85:0.55}})),
+        barWidth:'22%',barGap:'4%',
+        markLine:{silent:true,symbol:'none',lineStyle:{color:'#bbb',type:'dashed'},data:[{yAxis:0}]}
+      })),
+      tooltip:{trigger:'axis',formatter:ps=>DAYS[ps[0].dataIndex]+'<br>'+ps.map(p=>p.seriesName+': '+p.value.toFixed(3)).join('<br>')}
+    });
+  });
+}
+
+function s4(){
+  const bands=['A.40元以下','B.40-60元','C.60-80元','D.80元以上'];
+  const grpKeys=Object.keys(CAT_GROUPS);
+  const pfx=['m1','m2','m3','m4'];
+  const sfx=['a','b','c','d'];
+  grpKeys.forEach((grpName,gi)=>{
+    const cats=CAT_GROUPS[grpName];
+    bands.forEach((band,bi)=>{
+      const items=cats.map(c=>PD.find(d=>d.band===band&&d.cat===c)).filter(Boolean);
+      if(!items.length) return;
+      const catNames=items.map(d=>d.cat);
+      const vals=items.map(d=>d.yoy);
+      const vMin=Math.min(...vals), vMax=Math.max(...vals);
+      const pad=Math.max(Math.abs(vMin),Math.abs(vMax))*0.18+0.01;
+      I(pfx[gi]+sfx[bi]).setOption({
+        grid:{left:68,right:22,top:4,bottom:14},
+        yAxis:{type:'category',data:catNames,axisLabel:{fontSize:9}},
+        xAxis:{type:'value',axisLabel:{fontSize:8,formatter:v=>v.toFixed(2)},
+          min:vMin-pad,max:vMax+pad,splitLine:{lineStyle:{color:'#ebe7e3'}}},
+        series:[{type:'bar',
+          data:items.map(d=>({value:d.yoy,itemStyle:{color:yC(d.yoy)}})),
+          barWidth:'45%',
+          label:{show:true,position:'right',fontSize:8,formatter:p=>p.value.toFixed(2)},
+          markLine:{silent:true,symbol:'none',lineStyle:{color:'#bbb',type:'dashed'},data:[{xAxis:0}]}
+        }],
+        tooltip:{trigger:'item',formatter:p=>p.name+': '+p.value.toFixed(2)}
+      });
+    });
+  });
+}
+
+window.addEventListener('load',()=>{s1();s2();s3();s4()});
+window.addEventListener('resize',()=>{document.querySelectorAll('[id]').forEach(el=>{const c=echarts.getInstanceByDom(el);if(c)c.resize()})});
+</script>
+</body>
+</html>
